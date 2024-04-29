@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list> 
+#include "SystemNode.h"
 
 using namespace std; 
 
@@ -17,8 +18,11 @@ class User
         // static member {to generate user's id}
         static int user_count; 
 
+        // static member {to store all system users}
+        static list<User> all_system_users; 
+
         // constructor by default
-        User(); 
+        User(int ); 
         
         // getters 
         int getId(void); 
@@ -28,11 +32,15 @@ class User
         // Setters
         void setSystemNode(int); 
 
-        // make the current user comminucate with a system node
-
         // Create a data and append it into list of data_id
         void add_new_data(int);
 
+        // Add new user to the storage system
+        static bool create_new_user(SystemNode);
+
+        // Get user by its id 
+        static User& get_user_by_id(int );
+        
 };
 
 

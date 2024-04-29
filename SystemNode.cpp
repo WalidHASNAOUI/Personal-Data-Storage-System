@@ -6,7 +6,7 @@ using namespace std;
 
 // Initialize the static member to "0"
 int SystemNode::system_node_count = 0;
-// list<SystemNode> all_system_nodes; 
+list<SystemNode> SystemNode::all_system_nodes; 
 
 
 // Define the constructor 
@@ -16,9 +16,9 @@ SystemNode::SystemNode(int in_memory_capacity)
 
     this->id = SystemNode::system_node_count; 
     this->memory_capacity = in_memory_capacity; 
-    this->remaining_memory_space = 0 ; 
+    this->remaining_memory_space = this->memory_capacity ; 
 
-    // SystemNode::all_system_nodes.push_back(*this);
+    SystemNode::all_system_nodes.push_back(*this);
 } 
 
 
@@ -53,8 +53,18 @@ list<int> SystemNode::getSystemNodeListRef()
 // --------------------------------------------------------------------//
 //                       Get SystemNode by id                          // 
 // --------------------------------------------------------------------//
-SystemNode getSystemNodeById(int in_id)
+SystemNode SystemNode::get_system_node_by_id(int in_id)
 {
+    // declare an iterator over the list
+    list<SystemNode>::iterator ptr = SystemNode::all_system_nodes.begin(); 
+
+    // iterate over each element 
+    for (ptr; ptr != SystemNode::all_system_nodes.end() ; ptr++)
+    {
+        // check if the current system node's id is the same as the argument one 
+        if (ptr->getId() == in_id)
+            return *ptr;  
+    }
 
 }
 
@@ -117,6 +127,13 @@ void SystemNode::add_new_system_node(SystemNode in_sys_node)
 {
     this->getSystemNodeListRef().push_back(in_sys_node.getId()); 
 }
+
+// --------------------------------------------------------------------//
+//                     Get System Node by its id                       //
+//                     Important : Static method                       // 
+// --------------------------------------------------------------------//
+
+
 
 
 

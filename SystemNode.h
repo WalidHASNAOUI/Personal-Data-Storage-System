@@ -35,9 +35,6 @@ class SystemNode
         // Setters 
         void setRemainingMemorySpace(int ); 
 
-        // get system node by its id 
-        SystemNode getSystemNodeById(int); 
-
         // check the availibity of space in the current node in order to insert new data
         bool is_space_available(int); 
 
@@ -46,6 +43,9 @@ class SystemNode
 
         // Add new accesible system node 
         void add_new_system_node(SystemNode);
+
+        // get system_node by its id 
+        static SystemNode get_system_node_by_id(int); 
 
 };
 
